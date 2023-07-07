@@ -1,9 +1,9 @@
 /* Requires the Docker Pipeline plugin */
 pipeline {
-    agent {label = "Linux"}
+    agent {label "Linux"}
     options {
         buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')
-        disableConcurretBuilds()
+        disableConcurrentBuilds()
     }
     stages {
         stage('Hello') { 
