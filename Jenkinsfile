@@ -6,20 +6,18 @@ pipeline {
         disableConcurrentBuilds()
     }
     stages {
-        stage('Hello') { 
+        stage('Build') { 
     
             steps {
-                echo "hello"
+                sh "python main.py car.py"
             }
         }
-        stage ('cat README'){
-            when {
-                branch "work*"
-            }
+        stage ('Test'){
+            // when {
+            //     branch "work*"
+            // }
             steps{
-                sh '''
-                    cat README.md
-                    '''
+                sh "python -m unittest tests.py"
             }
         } 
     }
