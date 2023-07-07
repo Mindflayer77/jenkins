@@ -1,6 +1,6 @@
 /* Requires the Docker Pipeline plugin */
 pipeline {
-    agent any
+    agent  { docker { image 'python:3.10.7-alpine' } }
     options {
         buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')
         disableConcurrentBuilds()
@@ -8,13 +8,7 @@ pipeline {
     stages {
         stage ('Verify tools'){
             steps{
-                sh '''
-                docker version
-                docker info
-                docker compose version
-                curl --version
-                jq --version
-                '''
+                sh "python --version"
             }
         }
         stage('Build') { 
